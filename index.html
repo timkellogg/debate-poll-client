@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <title>Ractive test</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+            
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class="container center-align flow-text">  
+
+    <div class="row">
+      <div class="col s10 offset-s1" >
+        <h1>Who won the debate?</h1>
+      </div>
+      
+      <div id="container" class="col s10 offset-s1"></div>
+    </div>
+    
+  </div>
+  
+  <script id='template' type='text/ractive'>
+    
+  {{#if showingVotes}}
+  
+    <div class="results">
+      {{#each candidates}}
+        <div class="candidate-label flow-text">{{name}} - {{percentage}}%</div>
+        <div class="candidate-votes z-depth-1" style="width:{{ percentage }}%"></div>
+      {{/each}}
+    </div>
+        
+  {{else}}
+  
+    <table class="bordered">
+
+      <tbody>
+        {{#each candidates}}
+          <tr>
+            <td>{{name}}</td>
+            <td on-click='vote'>Vote</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    
+    <button class="btn-large waves-effect waves-light red" on-click='showVotes'>View Results</button>
+    
+  {{/if}}
+    
+  </script>
+
+  <script src="http://cdn.ractivejs.org/latest/ractive.min.js" charset="utf-8"></script>
+  <script src="script.js"></script>
+  
+</body>
+</html>
