@@ -46,11 +46,11 @@ ractive.on('vote', function(event) {
   ractive.add('candidates.' + index + '.votes');
 
   $.ajax({
+    type: 'PUT',
     url: baseUrl + '/candidates/' + event.context.id,
-    method: 'PUT',
-    dataType: 'script',
-  }).fail(function(err) {
-    alert('Something went wrong. Contact Tim. Actually don\'t.');
+    data: JSON.stringify({ candidate }),
+    contentType: 'application/json',
+    dataType: 'json',
   });
 
   ractive.setPercentages();
