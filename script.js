@@ -45,14 +45,12 @@ ractive.on('vote', function(event) {
 
   ractive.add('candidates.' + index + '.votes');
 
-  // Save vote to db
   $.ajax({
     url: baseUrl + '/candidates/' + event.context.id,
-    type: 'POST',
+    method: 'PUT',
     dataType: 'script',
-    data: {
-      resource: { candidateVote: 1 },
-    },
+  }).fail(function(err) {
+    alert('Something went wrong. Contact Tim. Actually don\'t.');
   });
 
   ractive.setPercentages();
