@@ -48,7 +48,7 @@ ractive.on('vote', function(event) {
   // Save vote to db
   $.ajax({
     url: baseUrl + '/candidates/' + event.context.id,
-    type: 'PUT',
+    type: 'POST',
     dataType: 'script',
     data: {
       resource: { candidateVote: 1 },
