@@ -1,4 +1,4 @@
-var baseUrl = 'http://localhost:3000';
+var baseUrl = 'https://secret-river-95418.herokuapp.com';
 
 var ractive = new Ractive({
   el: '#container',
@@ -44,21 +44,16 @@ ractive.on('vote', function(event) {
   ractive.showVotes();
 
   ractive.add('candidates.' + index + '.votes');
-  
+
   // Save vote to db
   $.ajax({
     url: baseUrl + '/candidates/' + event.context.id,
-    type: 'PATCH',
-    dataType: 'JSON',
-    success: function(data) {
-      console.log('success');
-    },
-    error: function(error) {
-      console.log('error');
+    type: 'PUT',
+    dataType: 'script',
+    data: {
+      resource: { candidateVote: 1 },
     },
   });
-  
-  // PATCH  /candidates/:id(.:format) candidates#update
 
   ractive.setPercentages();
 });
